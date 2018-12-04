@@ -34,7 +34,7 @@ set expandtab                       " Troca o tab or espaços
 set tabstop=4                       " Tab equivale a 4 espaços
 set shiftwidth=4                    " Operações como identação usando o >> também com 4 espaços
 set softtabstop=4                   " Operações como o backspace também com 4 espaços
-set list listchars=tab:→\ ,trail:·  " Exibe o caractere tab para o caso de alguém cometer o sacrilégio de misturar espaços com tabs
+"set list listchars=tab:→\ ,trail:·  " Exibe o caractere tab para o caso de alguém cometer o sacrilégio de misturar espaços com tabs
 
 
 "-----------------------------------------------
