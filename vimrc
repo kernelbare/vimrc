@@ -12,7 +12,7 @@ filetype plugin on      " Comporta-se adquadamente de acordo com o formato do ar
 " Opções gerais
 " -----------------------------------------------
 set number
-set nowrap                  " Não quebre a linha
+"set nowrap                  " Não quebre a linha
 set wildmenu                " Opção de autocompletar com o tab as opções do vim em comand-line
 set visualbell t_vb=        " Desabilita o barulho irritante do speaker, e ao invés de piscar a tela não faz nada
 set directory=~/.vim/tmp,   " Salva os arquivos de sessão do vim em um diretório à parte
@@ -59,8 +59,8 @@ map <leader>p :set paste<CR>
 map <leader>P :set nopaste<CR>
 
 " Define a linha atual como a linha zero na régua
-map <leader>r :set relativenumber<CR>
-map <leader>R :set norelativenumber<CR>
+map <leader>r :set relativenumber <bar> :set nowrap<CR>
+map <leader>R :set norelativenumber <bar> :set wrap<CR>
 
 map <leader>t :TlistToggle<CR>
 
