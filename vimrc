@@ -1,89 +1,172 @@
-set nocompatible    " Be IMproved
+"---- ---- ---- ---- ---- ---- Vim-Plug Initialization ---- ---- ---- ---- ---"
+" Avoid modify this section, unless you are very sure of what you are doing
+let vim_plug_just_installed = 0
+let vim_plug_path = expand('~/.vim/autoload/plug.vim')
+if !filereadable(vim_plug_path)
+    echo "Installing Vim-plug..."
+    echo ""
+    silent !mkdir -p ~/.vim/autoload
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let vim_plug_just_installed = 1
+endif
+" Manually Load Vim-Plug The First Time
+if vim_plug_just_installed
+    :execute 'source '.fnameescape(vim_plug_path)
+endif
+" Obscure hacks done, you can now modify the rest of the .vimrc as you wish :)
 
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+"---- ---- ---- ---- Plugins From Github and Vim-scripts ---- ---- ----"
+call plug#begin('~/.vim/plugged')     " Active Plugins
 
-syntax on               " Todas as opções referentes ao background, por exemplo, ficam no próprio arquivo de cores
-filetype plugin on      " Comporta-se adquadamente de acordo com o formato do arquivo sendo editado
+" Essential Starter Pack Plugins
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'               " Fuzzy finder
+Plug 'itchyny/lightline.vim'          " A light statusline/tabline plugin
+Plug 'airblade/vim-gitgutter'         " Git diff gutter and stages/undoesks
+Plug 'machakann/vim-highlightedyank'  " Make the yanked region apparent!
 
-"colorscheme darkburn
+" Color Schemes
+Plug 'lazarocastro/spacecamp'         " Vim color for the final frontier
+Plug 'dikiaap/minimalist'             " A Material Color Scheme Darker
+Plug 'morhetz/gruvbox'                " Gruvbox colorscheme
 
-" -----------------------------------------------
-" Opções gerais
-" -----------------------------------------------
-set number
-set relativenumber
-"set nowrap                  " Não quebre a linha
-set wildmenu                " Opção de autocompletar com o tab as opções do vim em comand-line
-set visualbell t_vb=        " Desabilita o barulho irritante do speaker, e ao invés de piscar a tela não faz nada
-set directory=~/.vim/tmp,   " Salva os arquivos de sessão do vim em um diretório à parte
-set backupdir=~/.vim/tmp,   " Salva os arquivos de sessão do vim em um diretório à parte
+" Tim Pope Section
+Plug 'tpope/vim-commentary'           " Use 'gcc' to comment out a line
+Plug 'tpope/vim-vinegar'              " Simple file browser
+Plug 'tpope/vim-surround'             " Quoting/parenthesizing made simple
+Plug 'tpope/vim-fugitive'             " A Git wrapper so awesome, it should be illegal
 
-" -----------------------------------------------
-" Opções de pequisa
-" -----------------------------------------------
-set incsearch           " Pesquisa incremental
-set ignorecase          " Auto explicativo...
-set hlsearch            " Highligth search :)
-set smartcase           " Se a pesquisa for tudo minúsculo, ignora o case, mas se houver pelo menos um caractere maiúsculo, o case será levado em consideração
+call plug#end()                       "Vim-plug finished declaring
+"---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- -----"
 
-" -----------------------------------------------
-" Tabs e espaços
-" -----------------------------------------------
-set smartindent                     " Mantém a mesma identação que a linha anterior
-set expandtab                       " Troca o tab or espaços
-set tabstop=4                       " Tab equivale a 4 espaços
-set shiftwidth=4                    " Operações como identação usando o >> também com 4 espaços
-set softtabstop=4                   " Operações como o backspace também com 4 espaços
-"set list listchars=tab:→\ ,trail:·  " Exibe o caractere tab para o caso de alguém cometer o sacrilégio de misturar espaços com tabs
+"---- ---- ---- --- Install Plugins The First Time Vim Runs --- ---- ---- ----"
+if vim_plug_just_installed
+  echo "Installing Bundles, please ignore key map error messages"
+  :PlugInstall
+endif
 
+"---- ---- ---- ---- Basic Setup ---- ---- ---- ----"
+syntax on
+filetype plugin indent on
+set encoding=utf-8
+set nocompatible                  " no vi-compatible
+let mapleader = ','               " The default leader is \
+set nu rnu                        " Activate line number and relative number
+set nowrap                        " Disable long line wrap
+set expandtab                     " Tabs and Spaces Handling
+set tabstop=4                     " Number of space that <TAB>
+set softtabstop=4                 " Number of space that <TAB>
+set shiftwidth=4                  " Number of space on (auto)ident
+set laststatus=2                  " Always Show Status Bar
+set noerrorbells visualbell t_vb= " No damn bells
+set clipboard=unnamed,unnamedplus " Copy into system (*, +) register
+set tags=tags;                    " Look for a tags file in directories
+set noshowmode                    " INSERT is unnecessary (see lightline.vim docs)
 
-"-----------------------------------------------
-" Mapas das teclas
-"-----------------------------------------------
-" Quem diabos usa o '\' como tecla de atalho?
-let mapleader = ","
+"---- ---- ---- ---- Searching ---- ---- ---- ----"
+set incsearch        " incremental search
+set hlsearch         " highlighted search results
+set ignorecase       " Ignore case when searching...
+set smartcase        " ...unless we type a capital
 
-" Pula duas linhas por scroll
-noremap <C-e> 2<C-e>
-noremap <C-y> 2<C-y>
+"---- ---- ---- ---- Scrolling ---- ---- ---- ----"
+set scrolloff=8
+set sidescrolloff=15
+set sidescroll=1
+set mouse=a
+"------------------------------------------------------------------
 
-" Desabilidar a marcação das palavras pesquisadas no momento
-map <leader>h :nohlsearch<CR>
+"---- ---- ---- ---- Tabs & Trailing Spaces ---- ---- ---- ----"
+set list listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 
-" Para para exibir/ocultar o NERDTree e para atualizar o NERDTree com o arquivo aberto
-map <leader>n :NERDTreeToggle<CR>
-map <leader>N :NERDTreeFind<CR>
+"---- ---- ---- ---- Better Backup, Swap and Undos Storage ---- ---- ---- ----"
+set directory=~/.vim/dirs/tmp               " directory to place swap files in
+set backup                                  " make backup files
+set backupdir=~/.vim/dirs/backups           " where to put backup files
+set undofile                                " persistent undos
+set undodir=~/.vim/dirs/undos               " undo after you re-open the file
+set viminfo+=n~/.vim/dirs/viminfo
+let g:yankring_history_dir = '~/.vim/dirs/' " store yankring history file
 
-" Avisa o vim para identar ou nao o texto ao colar e copiar algo externamente
-map <leader>p :set paste<CR>
-map <leader>P :set nopaste<CR>
+" Create Needed Directories if They Don't Exist
+if !isdirectory(&backupdir)
+  call mkdir(&backupdir, "p")
+endif
+if !isdirectory(&directory)
+  call mkdir(&directory, "p")
+endif
+if !isdirectory(&undodir)
+  call mkdir(&undodir, "p")
+endif
+
+"---- ---- ---- ---- Mappings ---- ---- ---- ----"
+"" Clean search (highlight), tabs and traling spaces
+nnoremap <silent> <leader><space> :noh<cr>:set nolist!<cr>
+
+"" Set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
+" Escape to the NORMAL mode
+inoremap jj <esc>
+
+"" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+"" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+"" Tabs
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+nnoremap <silent> <S-t> :tabnew<CR>
+
+"" Open all Buffer in Vertical Split
+map <silent> <F9> :tab sball <bar> :tabdo :close <bar> :vert sball<cr>
+
+"" Open all Buffer in Tab
+map <silent> <F10> :tab sball<cr>
+
+"" save as sudo
+ca w!! w !sudo tee "%"
 
 " Define a linha atual como a linha zero na régua
 map <leader>R :set relativenumber <bar> :set nowrap<CR>
 map <leader>r :set norelativenumber <bar> :set wrap<CR>
 
-map <leader>t :TlistToggle<CR>
 
-" Mapas para exibir/ocultar a barra com a limitação da 80ª coluna
-map <leader>8 :set colorcolumn=81<CR>
-map <leader>0 :set colorcolumn=0<CR>
+"---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
+"" Vinegar
+" Initialize with dot files hidden. Press 'gh' to toggle dot file hiding.
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+" Closes it vinegar buffer after opening the file
+let g:netrw_fastbrowse = 0
+" Specify user's preference for a viewer
+let g:netrw_browsex_viewer="setsid xdg-open"
 
-"-----------------------------------------------
-" Opções para o TagList
-"-----------------------------------------------
-let Tlist_Use_Right_Window=1            " Lista de tags à direita
-let Tlist_GainFocus_On_ToggleOpen=1     " Ganhar foco ao abrir a janela
-let Tlist_File_Fold_Auto_Close=1        " Não exibe tags de buffers inativos
-let Tlist_Close_On_Select=1             " Fecha o TagList ao selecionar alguma opção
+"" Fzf
+" file finder mapping
+nmap ,e :Files<CR>
+" tags (symbols) in current file finder mapping
+nmap ,g :BTag<CR>
+" the same, but with the word under the cursor pre filled
+nmap ,wg :execute ":BTag " . expand('<cword>')<CR>
+" tags (symbols) in all files finder mapping
+nmap ,G :Tags<CR>
+" the same, but with the word under the cursor pre filled
+nmap ,wG :execute ":Tags " . expand('<cword>')<CR>
+" general code finder in current file mapping
+nmap ,f :BLines<CR>
+" the same, but with the word under the cursor pre filled
+nmap ,wf :execute ":BLines " . expand('<cword>')<CR>
+" general code finder in all files mapping
+nmap ,F :Lines<CR>
+" the same, but with the word under the cursor pre filled
+nmap ,wF :execute ":Lines " . expand('<cword>')<CR>
+" commands finder mapping
+nmap ,c :Commands<CR>
 
-let tlist_php_settings='php;c:Classes;f:Functions' " Escondendo variáveis no TagList para PHP
-
-"-----------------------------------------------
-" Opções para o NERDTree
-"-----------------------------------------------
-let NERDTreeShowHidden=1                            " Exibe os arquivos ocultos
-let NERDChristmasTree=1                             " Algumas cores a mais, se disponível
-let NERDTreeHighlightCursorline=1                   " Tudo bem que esse é o padrão...
-let NERDTreeShowLineNumbers=1                       " TODO: Alterar pelo relativenumber, apenas para o NERDTree
-let NERDTreeIgnore=['\.*pyc$', '\.git$', '\.hg$']   " Arquivos ignorados pelo NERDTree
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>e :FZF -m<CR>
