@@ -101,14 +101,14 @@ endif
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
 "" On Terminal 
-colorscheme spacecamp_lite " I love it that colorscheme
+colorscheme gruvbox        " I love it that colorscheme
 set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
 set cursorcolumn           " Cursor Column
 set colorcolumn=80         " Screen columns that are highlight
 set fillchars+=vert:\      " remove ugly vertical lines on window division
-hi Comment cterm=italic
+" hi Comment cterm=italic
 hi vertsplit ctermfg=bg ctermbg=bg
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
