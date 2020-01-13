@@ -99,6 +99,18 @@ if !isdirectory(&undodir)
   call mkdir(&undodir, "p")
 endif
 
+"---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
+"" On Terminal 
+colorscheme spacecamp_lite " I love it that colorscheme
+set bg=dark                " Background used for highlight color
+set t_Co=256               " Enable 256 colors in Vim
+set cursorline             " Cursor Line
+set cursorcolumn           " Cursor Column
+set colorcolumn=80         " Screen columns that are highlight
+set fillchars+=vert:\      " remove ugly vertical lines on window division
+hi Comment cterm=italic
+hi vertsplit ctermfg=bg ctermbg=bg
+
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
 "" Clean search (highlight), tabs and traling spaces
 nnoremap <silent> <leader><space> :noh<cr>:set nolist!<cr>
@@ -131,11 +143,6 @@ map <silent> <F10> :tab sball<cr>
 
 "" save as sudo
 ca w!! w !sudo tee "%"
-
-" Define a linha atual como a linha zero na régua
-map <leader>R :set relativenumber <bar> :set nowrap<CR>
-map <leader>r :set norelativenumber <bar> :set wrap<CR>
-
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
 "" Vinegar
