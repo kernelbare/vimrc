@@ -135,6 +135,12 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
 
+"" Split
+set splitbelow
+set splitright
+noremap <Leader>h :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
+
 "" Open all Buffer in Vertical Split
 map <silent> <F9> :tab sball <bar> :tabdo :close <bar> :vert sball<cr>
 
