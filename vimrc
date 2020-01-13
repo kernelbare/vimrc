@@ -141,6 +141,12 @@ set splitright
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
+"" Switching windows
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+
 "" Open all Buffer in Vertical Split
 map <silent> <F9> :tab sball <bar> :tabdo :close <bar> :vert sball<cr>
 
