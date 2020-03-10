@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')     " Active Plugins
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'               " Fuzzy finder
 Plug 'itchyny/lightline.vim'          " A light statusline/tabline plugin
-Plug 'airblade/vim-gitgutter'         " Git diff gutter and stages/undoesks
+" Plug 'airblade/vim-gitgutter'         " Git diff gutter and stages/undoesks
 Plug 'machakann/vim-highlightedyank'  " Make the yanked region apparent!
 
 " Color Schemes
@@ -51,7 +51,7 @@ filetype plugin indent on
 set encoding=utf-8
 set nocompatible                  " no vi-compatible
 let mapleader = ','               " The default leader is \
-set nu rnu                        " Activate line number and relative number
+" set nu rnu                        " Activate line number and relative number
 set nowrap                        " Disable long line wrap
 set expandtab                     " Tabs and Spaces Handling
 set tabstop=4                     " Number of space that <TAB>
@@ -73,7 +73,7 @@ set smartcase        " ...unless we type a capital
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
-set mouse=a
+" set mouse=a
 "------------------------------------------------------------------
 
 "---- ---- ---- ---- Tabs & Trailing Spaces ---- ---- ---- ----"
