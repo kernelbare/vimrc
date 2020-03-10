@@ -101,7 +101,7 @@ endif
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
 "" On Terminal 
-colorscheme gruvbox        " I love it that colorscheme
+colorscheme spacecamp_lite " I love it that colorscheme
 set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
