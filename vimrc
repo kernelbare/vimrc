@@ -51,7 +51,7 @@ filetype plugin indent on
 set encoding=utf-8
 set nocompatible                  " no vi-compatible
 let mapleader = ','               " The default leader is \
-" set nu rnu                        " Activate line number and relative number
+set nu rnu                        " Activate line number and relative number
 set nowrap                        " Disable long line wrap
 set expandtab                     " Tabs and Spaces Handling
 set tabstop=4                     " Number of space that <TAB>
