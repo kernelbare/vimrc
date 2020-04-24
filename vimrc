@@ -101,7 +101,7 @@ endif
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
 "" On Terminal 
-colorscheme spacecamp_lite " I love it that colorscheme
+colorscheme gruvbox        " I love it that colorscheme
 set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
@@ -120,7 +120,7 @@ fun! ToggleCC()
         set cc=
     endif
 endfun
-nnoremap <silent> <leader><space> :noh<cr>:set nolist!<cr>:call ToggleCC()<cr>
+nnoremap <silent> <leader><space> :noh<cr>:set nolist!<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
