@@ -113,7 +113,14 @@ hi vertsplit ctermfg=bg ctermbg=bg
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
 "" Clean search (highlight), tabs and traling spaces
-nnoremap <silent> <leader><space> :noh<cr>:set nolist!<cr>
+fun! ToggleCC()
+    if &cc == ''
+        set cc=80
+    else
+        set cc=
+    endif
+endfun
+nnoremap <silent> <leader><space> :noh<cr>:set nolist!<cr>:call ToggleCC()<cr>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
