@@ -29,6 +29,7 @@ Plug 'machakann/vim-highlightedyank'  " Make the yanked region apparent!
 Plug 'lazarocastro/spacecamp'         " Vim color for the final frontier
 Plug 'dikiaap/minimalist'             " A Material Color Scheme Darker
 Plug 'morhetz/gruvbox'                " Gruvbox colorscheme
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Tim Pope Section
 Plug 'tpope/vim-commentary'           " Use 'gcc' to comment out a line
@@ -101,7 +102,7 @@ endif
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
 "" On Terminal 
-colorscheme gruvbox        " I love it that colorscheme
+colorscheme dracula        " I love it that colorscheme
 set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
@@ -112,6 +113,9 @@ set fillchars+=vert:\      " remove ugly vertical lines on window division
 hi vertsplit ctermfg=bg ctermbg=bg
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
+"" Make it easy to edit the Vimrc file."
+nmap <Leader>ev :tabedit ~/.vim/vimrc<cr>
+
 "" Clean search (highlight), tabs and traling spaces
 fun! ToggleCC()
     if &cc == ''
@@ -127,6 +131,9 @@ nnoremap <leader>. :lcd %:p:h<CR>
 
 " Escape to the NORMAL mode
 inoremap jj <esc>
+
+"" terminal emulation
+nnoremap <silent> <leader>sh :below terminal<CR>
 
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
@@ -147,6 +154,10 @@ set splitbelow
 set splitright
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
+
+"" Zoom Window
+noremap Zz <c-w>_ \| <c-w>\|
+noremap Zo <c-w>=
 
 "" Switching windows
 noremap <C-j> <C-w>j
