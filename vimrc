@@ -24,6 +24,7 @@ Plug 'junegunn/fzf.vim'               " Fuzzy finder
 Plug 'itchyny/lightline.vim'          " A light statusline/tabline plugin
 " Plug 'airblade/vim-gitgutter'         " Git diff gutter and stages/undoesks
 Plug 'machakann/vim-highlightedyank'  " Make the yanked region apparent!
+Plug 'vim-scripts/AutoComplPop'       " Automatically opens popup menu for completions
 
 " Color Schemes
 Plug 'lazarocastro/spacecamp'         " Vim color for the final frontier
@@ -175,6 +176,13 @@ map <silent> <F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
+"AutoComplPop
+"References
+"https://www.youtube.com/watch?v=2f8h45YR494
+"https://github.com/nickjj/dotfiles
+set complete+=kspell
+set completeopt=menuone,longest
+set shortmess+=c
 "" Vinegar
 " Initialize with dot files hidden. Press 'gh' to toggle dot file hiding.
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
