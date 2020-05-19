@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')     " Active Plugins
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'               " Fuzzy finder
 Plug 'itchyny/lightline.vim'          " A light statusline/tabline plugin
-" Plug 'airblade/vim-gitgutter'         " Git diff gutter and stages/undoesks
+Plug 'airblade/vim-gitgutter'         " Git diff gutter and stages/undoesks
 Plug 'machakann/vim-highlightedyank'  " Make the yanked region apparent!
 Plug 'vim-scripts/AutoComplPop'       " Automatically opens popup menu for completions
 
@@ -97,7 +97,7 @@ fun! ToggleCC()
 endfun
 
 " Use ',' + Space to toggle relative number, colorcolumn, listchars and search highlight
-nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>:set nolist!<cr>
+nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>:set nolist!<cr>:GitGutterToggle<cr>
 
 "---- ---- ---- ---- Better Backup, Swap and Undos Storage ---- ---- ---- ----"
 set directory=~/.vim/dirs/tmp               " directory to place swap files in
@@ -184,6 +184,10 @@ map <silent> <F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
+"" vim-gitgutter
+let g:gitgutter_enabled = 0
+let g:gitgutter_highlight_lines = 1
+
 "" AutoComplPop
 " References
 " https://www.youtube.com/watch?v=2f8h45YR494
