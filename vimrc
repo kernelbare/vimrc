@@ -30,7 +30,7 @@ Plug 'vim-scripts/AutoComplPop'       " Automatically opens popup menu for compl
 Plug 'lazarocastro/spacecamp'         " Vim color for the final frontier
 Plug 'dikiaap/minimalist'             " A Material Color Scheme Darker
 Plug 'morhetz/gruvbox'                " Gruvbox colorscheme
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dracula/vim', {'as': 'dracula'} " 🧛 Dark theme for Vim
 
 " Tim Pope Section
 Plug 'tpope/vim-commentary'           " Use 'gcc' to comment out a line
@@ -53,7 +53,7 @@ filetype plugin indent on
 set encoding=utf-8
 set nocompatible                  " no vi-compatible
 let mapleader = ','               " The default leader is \
-set nu rnu                        " Activate line number and relative number
+" set nu rnu                        " Activate line number and relative number
 set nowrap                        " Disable long line wrap
 set expandtab                     " Tabs and Spaces Handling
 set tabstop=4                     " Number of space that <TAB>
@@ -75,11 +75,29 @@ set smartcase        " ...unless we type a capital
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
-" set mouse=a
-"------------------------------------------------------------------
+" set mouse=a        " Uncomment if you like to use mouse to select
 
 "---- ---- ---- ---- Tabs & Trailing Spaces ---- ---- ---- ----"
-set list listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+" Toggle listchars
+fun! ToggleLC() 
+    if &listchars == ''
+        set listchars=''
+    else
+        set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+    endif
+endfun  
+ 
+" Toggle colorcolumn
+fun! ToggleCC() 
+    if &cc == ''
+        set cc=80
+    else
+        set cc=
+    endif
+endfun
+
+" Use ',' + Space to toggle relative number, colorcolumn, listchars and search highlight
+nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>:set nolist!<cr>
 
 "---- ---- ---- ---- Better Backup, Swap and Undos Storage ---- ---- ---- ----"
 set directory=~/.vim/dirs/tmp               " directory to place swap files in
@@ -108,24 +126,14 @@ set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
 set cursorcolumn           " Cursor Column
-" set colorcolumn=80         " Screen columns that are highlight
 set fillchars+=vert:\      " remove ugly vertical lines on window division
+" set colorcolumn=80         " Screen columns that are highlight
 " hi Comment cterm=italic
 hi vertsplit ctermfg=bg ctermbg=bg
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
 "" Make it easy to edit the Vimrc file."
 nmap <Leader>ev :tabedit ~/.vim/vimrc<cr>
-
-"" Clean search (highlight), tabs and traling spaces
-fun! ToggleCC()
-    if &cc == ''
-        set cc=80
-    else
-        set cc=
-    endif
-endfun
-nnoremap <silent> <leader><space> :noh<cr>:set nolist!<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -176,13 +184,14 @@ map <silent> <F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
-"AutoComplPop
-"References
-"https://www.youtube.com/watch?v=2f8h45YR494
-"https://github.com/nickjj/dotfiles
+"" AutoComplPop
+" References
+" https://www.youtube.com/watch?v=2f8h45YR494
+" https://github.com/nickjj/dotfiles
 set complete+=kspell
 set completeopt=menuone,longest
 set shortmess+=c
+
 "" Vinegar
 " Initialize with dot files hidden. Press 'gh' to toggle dot file hiding.
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
