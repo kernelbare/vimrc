@@ -25,6 +25,7 @@ Plug 'itchyny/lightline.vim'          " A light statusline/tabline plugin
 Plug 'airblade/vim-gitgutter'         " Git diff gutter and stages/undoesks
 Plug 'machakann/vim-highlightedyank'  " Make the yanked region apparent!
 Plug 'vim-scripts/AutoComplPop'       " Automatically opens popup menu for completions
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Color Schemes
 Plug 'lazarocastro/spacecamp'         " Vim color for the final frontier
