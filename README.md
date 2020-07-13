@@ -4,3 +4,8 @@
 git clone https://github.com/lazarocastro/basic_vimrc.git ~/.vim
 ln -s ~/.vim/tmux.conf ~/.tmux.conf
 ```
+
+## If you use Tilix terminal
+```
+dconf load /com/gexperts/Tilix/ < ~/.vim/tilix.dconf
+```
