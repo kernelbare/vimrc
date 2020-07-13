@@ -1,0 +1,25 @@
+[/]
+control-scroll-zoom=true
+copy-on-select=true
+prompt-on-close=true
+quake-specific-monitor=0
+tab-position='top'
+terminal-title-show-when-single=true
+terminal-title-style='none'
+theme-variant='dark'
+use-overlay-scrollbar=true
+use-tabs=true
+warn-vte-config-issue=false
+window-style='normal'
+
+[profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+background-color='#282828'
+badge-color-set=false
+bold-color-set=false
+cursor-colors-set=false
+foreground-color='#EBDBB2'
+highlight-colors-set=false
+palette=['#282828', '#CC241D', '#98971A', '#D79921', '#458588', '#B16286', '#689D6A', '#A89984', '#928374', '#FB4934', '#B8BB26', '#FABD2F', '#83A598', '#D3869B', '#8EC07C', '#EBDBB2']
+terminal-bell='none'
+use-theme-colors=false
+visible-name='Default'
