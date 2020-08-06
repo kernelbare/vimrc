@@ -1,11 +1,10 @@
 # Basic VIM and TMUX configurations for Linux Servers Admin
 
-```console
-git clone https://github.com/lazarocastro/basic_vimrc.git ~/.vim
-ln -s ~/.vim/tmux.conf ~/.tmux.conf
-```
+## Instalation
+    git clone https://github.com/lazarocastro/basic-vimrc.git ~/.vim
 
-## If you use Tilix terminal
-```
-dconf load /com/gexperts/Tilix/ < ~/.vim/tilix.dconf
-```
+## Dependecies
+### On Ubuntu
+    sudo apt install git curl silversearcher-ag exuberant-ctags agrep unzip jq ack-grep 
+### On CentOS
+    sudo yum install epel-release ctags the_silver_searcher agrep ack
