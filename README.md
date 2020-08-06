@@ -1,4 +1,4 @@
-# Basic VIM and TMUX configurations for Linux Servers Admin
+# Basic Vim configuration for Linux Servers Admins
 
 ## Instalation
     git clone https://github.com/lazarocastro/basic-vimrc.git ~/.vim
