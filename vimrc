@@ -20,26 +20,34 @@ call plug#begin('~/.vim/plugged')     " Active Plugins
 
 " Essential Starter Pack Plugins
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'               " Fuzzy finder
-Plug 'itchyny/lightline.vim'          " A light statusline/tabline plugin
-Plug 'airblade/vim-gitgutter'         " Git diff gutter and stages/undoesks
-Plug 'machakann/vim-highlightedyank'  " Make the yanked region apparent!
+Plug 'junegunn/fzf.vim'              " Fuzzy finder
+Plug 'mileszs/ack.vim'               " Ack code search (requires ack installed in the system)
+Plug 'vim-scripts/grep.vim'          " Integrates the [a, e and f]grep
+Plug 'itchyny/lightline.vim'         " A light statusline/tabline plugin
+Plug 'airblade/vim-gitgutter'        " Git diff gutter and stages/undoesks
+Plug 'machakann/vim-highlightedyank' " Make the yanked region apparent!
+Plug 'SirVer/ultisnips'              " The ultimate snippet solution for Vim
+Plug 'honza/vim-snippets'            " Vim-snipmate default snippets
 Plug 'vim-scripts/AutoComplPop'       " Automatically opens popup menu for completions
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Color Schemes
-Plug 'lazarocastro/spacecamp'         " Vim color for the final frontier
-Plug 'dikiaap/minimalist'             " A Material Color Scheme Darker
-Plug 'morhetz/gruvbox'                " Gruvbox colorscheme
-Plug 'dracula/vim', {'as': 'dracula'} " 🧛 Dark theme for Vim
+Plug 'NLKNguyen/papercolor-theme'       " Light & Dark Vim color schemes inspired by Google's Material Design
+Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
+Plug 'rakr/vim-one'                     " Light and dark vim colorscheme, shamelessly stolen from atom 
+" Plug 'lazarocastro/spacecamp'         " Vim color for the final frontier
+" Plug 'dikiaap/minimalist'             " A Material Color Scheme Darker
+" Plug 'dracula/vim', {'as': 'dracula'} " 🧛 Dark theme for Vim
 
 " Tim Pope Section
-Plug 'tpope/vim-commentary'           " Use 'gcc' to comment out a line
-Plug 'tpope/vim-vinegar'              " Simple file browser
-Plug 'tpope/vim-surround'             " Quoting/parenthesizing made simple
-Plug 'tpope/vim-fugitive'             " A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-commentary' " Use 'gcc' to comment out a line
+Plug 'tpope/vim-vinegar'    " Simple file browser
+Plug 'tpope/vim-surround'   " Quoting/parenthesizing made simple
+Plug 'tpope/vim-fugitive'   " A Git wrapper so awesome, it should be illegal
 
-call plug#end()                       "Vim-plug finished declaring
+" Languages
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+call plug#end() "Vim-plug finished declaring
 "---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- -----"
 
 "---- ---- ---- --- Install Plugins The First Time Vim Runs --- ---- ---- ----"
@@ -49,28 +57,29 @@ if vim_plug_just_installed
 endif
 
 "---- ---- ---- ---- Basic Setup ---- ---- ---- ----"
-syntax on
+syntax enable
 filetype plugin indent on
 set encoding=utf-8
+set backspace=indent,eol,start    " Make backspace behave like every other editor
 set nocompatible                  " no vi-compatible
 let mapleader = ','               " The default leader is \
-" set nu rnu                        " Activate line number and relative number
 set nowrap                        " Disable long line wrap
 set expandtab                     " Tabs and Spaces Handling
-set tabstop=4                     " Number of space that <TAB>
-set softtabstop=4                 " Number of space that <TAB>
-set shiftwidth=4                  " Number of space on (auto)ident
+set tabstop=2                     " Number of space that <TAB>
+set softtabstop=2                 " Number of space that <TAB>
+set shiftwidth=2                  " Number of space on (auto)ident
 set laststatus=2                  " Always Show Status Bar
 set noerrorbells visualbell t_vb= " No damn bells
 set clipboard=unnamed,unnamedplus " Copy into system (*, +) register
 set tags=tags;                    " Look for a tags file in directories
 set noshowmode                    " INSERT is unnecessary (see lightline.vim docs)
+" set nu rnu                        " Activate line number and relative number
 
 "---- ---- ---- ---- Searching ---- ---- ---- ----"
-set incsearch        " incremental search
-set hlsearch         " highlighted search results
-set ignorecase       " Ignore case when searching...
-set smartcase        " ...unless we type a capital
+set incsearch  " incremental search
+set hlsearch   " highlighted search results
+set ignorecase " Ignore case when searching...
+set smartcase  " ...unless we type a capital
 
 "---- ---- ---- ---- Scrolling ---- ---- ---- ----"
 set scrolloff=8
@@ -80,16 +89,16 @@ set sidescroll=1
 
 "---- ---- ---- ---- Tabs & Trailing Spaces ---- ---- ---- ----"
 " Toggle listchars
-fun! ToggleLC() 
+fun! ToggleLC()
     if &listchars == ''
         set listchars=''
     else
         set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
     endif
-endfun  
- 
+endfun
+
 " Toggle colorcolumn
-fun! ToggleCC() 
+fun! ToggleCC()
     if &cc == ''
         set cc=80
     else
@@ -97,8 +106,8 @@ fun! ToggleCC()
     endif
 endfun
 
-" Use ',' + Space to toggle relative number, colorcolumn, listchars and search highlight
-nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>:set nolist!<cr>:GitGutterToggle<cr>
+" Use  ",-<space>" to toggle relative number, colorcolumn, listchars and search highlight
+nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>:set nolist!<cr>
 
 "---- ---- ---- ---- Better Backup, Swap and Undos Storage ---- ---- ---- ----"
 set directory=~/.vim/dirs/tmp               " directory to place swap files in
@@ -122,19 +131,39 @@ endif
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
 "" On Terminal 
-colorscheme gruvbox        " I love it that colorscheme
+colorscheme PaperColor     " I love it that colorscheme
 set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
 set cursorcolumn           " Cursor Column
+set foldcolumn=1           " Width between text and border
 set fillchars+=vert:\      " remove ugly vertical lines on window division
-" set colorcolumn=80         " Screen columns that are highlight
+"set colorcolumn=80         " Screen columns that are highlight
 " hi Comment cterm=italic
-hi vertsplit ctermfg=bg ctermbg=bg
+if !has("gui_running")
+  hi vertsplit ctermfg=bg ctermbg=bg
+endif
+
+"" GVim
+set guioptions-=m " Disable menu bar
+set guioptions-=T " Disable toolbar
+set guioptions-=l " Disable left-hand scrollbar
+set guioptions-=L " Disable left-hand scrollbar vertically
+set guioptions-=r " Disable right-hand scrollbar
+set guioptions-=R " Disable right-hand scrollbar vertically
+set guioptions-=e " Disable gui tabs
+hi vertsplit guifg=bg guibg=bg
+if has("autocmd") && has("gui")
+    au GUIEnter * set vb t_vb=
+    set guifont=Monospace\ Regular\ 12
+endif
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
 "" Make it easy to edit the Vimrc file."
 nmap <Leader>ev :tabedit ~/.vim/vimrc<cr>
+
+""Open notes file"
+nmap <silent><Leader>en :vsplit ~/.vim/NOTES.md<cr>:vertical resize 50<cr>:let &statusline='%#Normal# '<cr>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -185,7 +214,27 @@ map <silent> <F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
+"" vim-go
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
+
+"" lightline
+let g:lightline = {
+      \ 'colorscheme': 'default',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+
+
 "" vim-gitgutter
+nmap <silent><F8> :GitGutterToggle<cr>
 let g:gitgutter_enabled = 0
 let g:gitgutter_highlight_lines = 1
 
@@ -205,27 +254,57 @@ let g:netrw_fastbrowse = 0
 " Specify user's preference for a viewer
 let g:netrw_browsex_viewer="setsid xdg-open"
 
-"" Fzf
-" file finder mapping
-nmap ,e :Files<CR>
-" tags (symbols) in current file finder mapping
-nmap ,g :BTag<CR>
-" the same, but with the word under the cursor pre filled
-nmap ,wg :execute ":BTag " . expand('<cword>')<CR>
-" tags (symbols) in all files finder mapping
-nmap ,G :Tags<CR>
-" the same, but with the word under the cursor pre filled
-nmap ,wG :execute ":Tags " . expand('<cword>')<CR>
-" general code finder in current file mapping
-nmap ,f :BLines<CR>
-" the same, but with the word under the cursor pre filled
-nmap ,wf :execute ":BLines " . expand('<cword>')<CR>
-" general code finder in all files mapping
-nmap ,F :Lines<CR>
-" the same, but with the word under the cursor pre filled
-nmap ,wF :execute ":Lines " . expand('<cword>')<CR>
-" commands finder mapping
-nmap ,c :Commands<CR>
+"" grep.vim
+nnoremap <silent> <leader>f :Rgrep<CR>
+let Grep_Default_Options = '-IR'
+let Grep_Skip_Files = '*.log *.db'
+let Grep_Skip_Dirs = '.git node_modules'
 
+"" fzf.vim
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+
+"" The Silver Searcher
+if executable('ag')
+  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+"" ripgrep
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
+
+cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>e :FZF -m<CR>
+" nnoremap <silent> <leader>e :FZF -m<CR>
+nnoremap <silent> <C-p> :FZF -m<CR>
+
+" Recovery commands from history through FZF
+nmap <leader>y :History:<CR>
+
+"" Ack.vim
+nmap ,r :Ack!<space>
+nmap ,wr :execute ":Ack! " . expand('<cword>')<CR>
+" let g:ackpreview = 1
+let g:ackhighlight = 1
+
+"---- ---- ---- ---- Auto-Commands ---- ---- ---- ----"
+" clear empty spaces at the end of lines on save of python files
+autocmd BufWritePre *.py :%s/\s\+$//e
+
+" Automatically source the Vimrc file on save
+augroup autosourcing
+  autocmd!
+  autocmd BufWritePost ~/.vim/vimrc source %
+augroup END
+
+" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
