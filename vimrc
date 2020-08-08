@@ -28,7 +28,8 @@ Plug 'airblade/vim-gitgutter'        " Git diff gutter and stages/undoesks
 Plug 'machakann/vim-highlightedyank' " Make the yanked region apparent!
 Plug 'SirVer/ultisnips'              " The ultimate snippet solution for Vim
 Plug 'honza/vim-snippets'            " Vim-snipmate default snippets
-Plug 'vim-scripts/AutoComplPop'       " Automatically opens popup menu for completions
+Plug 'vim-scripts/AutoComplPop'      " Automatically opens popup menu for completions
+Plug 'jiangmiao/auto-pairs'          " Vim plugin, insert or delete brackets, parens, quotes in pair 
 
 " Color Schemes
 Plug 'NLKNguyen/papercolor-theme'       " Light & Dark Vim color schemes inspired by Google's Material Design
