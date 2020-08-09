@@ -1,4 +1,22 @@
 # vim: ft=sh
+END='\e[0m'
+BOLD='\e[1m'
+COLOR_WHITE='\e[39m'
+COLOR_BLACK='\e[30m'
+COLOR_BLUE='\e[34m'
+COLOR_LIGHT_BLUE='\e[94m'
+COLOR_GREEN='\e[32m'
+COLOR_LIGHT_GREEN='\e[92m'
+COLOR_CYAN='\e[36m'
+COLOR_LIGHT_CYAN='\e[96m'
+COLOR_RED='\e[31m'
+COLOR_LIGHT_RED='\e[91m'
+COLOR_MAGENTA='\e[35m'
+COLOR_LIGHT_MAGENTA='\e[95m'
+COLOR_YELLOW='\e[33m'
+COLOR_LIGHT_YELLOW='\e[93m'
+COLOR_DARK_GRAY='\e[90m'
+COLOR_LIGHT_GRAY='\e[37m'
 
 # No brainer, default to Vim
 export EDITOR="vim"
@@ -17,7 +35,7 @@ function parse_git_branch() {
   if [ ! "${BRANCH}" == "" ]
   then
     STAT=`parse_git_dirty`
-    echo "[${BRANCH}${STAT}]"
+    echo -e "${COLOR_BLUE}${BOLD}git:(${COLOR_RED}${BOLD}${BRANCH}${COLOR_BLUE}${BOLD})${END}${STAT} "
   else
     echo ""
   fi
@@ -46,20 +64,19 @@ function parse_git_dirty {
     bits="?${bits}"
   fi
   if [ "${deleted}" == "0" ]; then
-    bits="x${bits}"
+    bits="${COLOR_RED}X${bits}"
   fi
   if [ "${dirty}" == "0" ]; then
-    bits="!${bits}"
+    bits="${COLOR_YELLOW}!${bits}"
   fi
   if [ ! "${bits}" == "" ]; then
-    echo " ${bits}"
+    echo -e " ${bits}"
   else
     echo ""
   fi
 }
 
-export PS1="\[\e[36m\]\W\[\e[m\] \[\e[32m\]\`parse_git_branch\`\[\e[m\] # "
-source <(kubectl completion bash)
-alias k=kubectl
-complete -F __start_kubectl k
-
+export PS1="${COLOR_GREEN}${BOLD}➜  ${COLOR_CYAN}\w \`parse_git_branch\`${END}"
+# source <(kubectl completion bash)
+# alias k=kubectl
+# complete -F __start_kubectl k
