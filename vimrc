@@ -26,10 +26,14 @@ Plug 'vim-scripts/grep.vim'          " Integrates the [a, e and f]grep
 Plug 'itchyny/lightline.vim'         " A light statusline/tabline plugin
 Plug 'airblade/vim-gitgutter'        " Git diff gutter and stages/undoesks
 Plug 'machakann/vim-highlightedyank' " Make the yanked region apparent!
-Plug 'SirVer/ultisnips'              " The ultimate snippet solution for Vim
-Plug 'honza/vim-snippets'            " Vim-snipmate default snippets
 Plug 'vim-scripts/AutoComplPop'      " Automatically opens popup menu for completions
 Plug 'jiangmiao/auto-pairs'          " Vim plugin, insert or delete brackets, parens, quotes in pair 
+
+" Snippets
+Plug 'MarcWeber/vim-addon-mw-utils'  " interpret a file by function and cache file automatically
+Plug 'tomtom/tlib_vim'               " Some utility functions for VIM
+Plug 'garbas/vim-snipmate'           " TextMate's snippets features in Vim.
+Plug 'honza/vim-snippets'            " Vim-snipmate default snippets
 
 " Color Schemes
 Plug 'NLKNguyen/papercolor-theme'       " Light & Dark Vim color schemes inspired by Google's Material Design
@@ -137,7 +141,7 @@ set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
 set cursorcolumn           " Cursor Column
-set foldcolumn=1           " Width between text and border
+" set foldcolumn=1           " Width between text and border
 set fillchars+=vert:\      " remove ugly vertical lines on window division
 "set colorcolumn=80         " Screen columns that are highlight
 " hi Comment cterm=italic
