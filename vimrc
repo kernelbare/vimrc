@@ -16,8 +16,7 @@ endif
 " Obscure hacks done, you can now modify the rest of the .vimrc as you wish :)
 
 "---- ---- ---- ---- Plugins From Github and Vim-scripts ---- ---- ----"
-call plug#begin('~/.vim/plugged')     " Active Plugins
-
+call plug#begin('~/.vim/plugged')    " Active Plugins
 " Essential Starter Pack Plugins
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'              " Fuzzy finder
@@ -28,7 +27,13 @@ Plug 'airblade/vim-gitgutter'        " Git diff gutter and stages/undoesks
 Plug 'machakann/vim-highlightedyank' " Make the yanked region apparent!
 Plug 'vim-scripts/AutoComplPop'      " Automatically opens popup menu for completions
 Plug 'jiangmiao/auto-pairs'          " Vim plugin, insert or delete brackets, parens, quotes in pair 
+Plug 'ap/vim-css-color'              " Preview colours in source code while editing
 
+" Tim Pope Section
+Plug 'tpope/vim-commentary'          " Use 'gcc' to comment out a line
+Plug 'tpope/vim-vinegar'             " Simple file browser
+Plug 'tpope/vim-surround'            " Quoting/parenthesizing made simple
+Plug 'tpope/vim-fugitive'            " A Git wrapper so awesome, it should be illegal
 " Snippets
 Plug 'MarcWeber/vim-addon-mw-utils'  " interpret a file by function and cache file automatically
 Plug 'tomtom/tlib_vim'               " Some utility functions for VIM
@@ -36,26 +41,12 @@ Plug 'garbas/vim-snipmate'           " TextMate's snippets features in Vim.
 Plug 'honza/vim-snippets'            " Vim-snipmate default snippets
 
 " Color Schemes
-Plug 'NLKNguyen/papercolor-theme'       " Light & Dark Vim color schemes inspired by Google's Material Design
-Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
-Plug 'rakr/vim-one'                     " Light and dark vim colorscheme, shamelessly stolen from atom 
-" Plug 'lazarocastro/spacecamp'         " Vim color for the final frontier
-" Plug 'dikiaap/minimalist'             " A Material Color Scheme Darker
-" Plug 'dracula/vim', {'as': 'dracula'} " 🧛 Dark theme for Vim
-
-" Tim Pope Section
-Plug 'tpope/vim-commentary' " Use 'gcc' to comment out a line
-Plug 'tpope/vim-vinegar'    " Simple file browser
-Plug 'tpope/vim-surround'   " Quoting/parenthesizing made simple
-Plug 'tpope/vim-fugitive'   " A Git wrapper so awesome, it should be illegal
-
-" Languages
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-call plug#end() "Vim-plug finished declaring
+Plug 'NLKNguyen/papercolor-theme'    " Light & Dark Vim color schemes inspired by Google's Material Design
+Plug 'morhetz/gruvbox'               " Gruvbox colorscheme
+call plug#end()                      " Vim-plug finished declaring
 "---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- -----"
 
-"---- ---- ---- --- Install Plugins The First Time Vim Runs --- ---- ---- ----"
+"---- ---- ---- --- Install Plugins At The First Time Vim Runs --- ---- ---- ----"
 if vim_plug_just_installed
   echo "Installing Bundles, please ignore key map error messages"
   :PlugInstall
@@ -78,7 +69,9 @@ set noerrorbells visualbell t_vb= " No damn bells
 set clipboard=unnamed,unnamedplus " Copy into system (*, +) register
 set tags=tags;                    " Look for a tags file in directories
 set noshowmode                    " INSERT is unnecessary (see lightline.vim docs)
-" set nu rnu                        " Activate line number and relative number
+set confirm                       " use a dialog when an operation has to be confirmed
+set title                         " the title of the window
+"set nu rnu                        " Activate line number and relative number
 
 "---- ---- ---- ---- Searching ---- ---- ---- ----"
 set incsearch  " incremental search
@@ -91,6 +84,26 @@ set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
 " set mouse=a        " Uncomment if you like to use mouse to select
+
+"---- ---- ---- ---- Better Backup, Swap and Undos Storage ---- ---- ---- ----"
+set directory=~/.vim/dirs/tmp               " directory to place swap files in
+set backup                                  " make backup files
+set backupdir=~/.vim/dirs/backups           " where to put backup files
+set undofile                                " persistent undos
+set undodir=~/.vim/dirs/undos               " undo after you re-open the file
+set viminfo+=n~/.vim/dirs/viminfo
+let g:yankring_history_dir = '~/.vim/dirs/' " store yankring history file
+
+" Create Needed Directories if They Don't Exist
+if !isdirectory(&backupdir)
+  call mkdir(&backupdir, "p")
+endif
+if !isdirectory(&directory)
+  call mkdir(&directory, "p")
+endif
+if !isdirectory(&undodir)
+  call mkdir(&undodir, "p")
+endif
 
 "---- ---- ---- ---- Tabs & Trailing Spaces ---- ---- ---- ----"
 " Toggle listchars
@@ -114,26 +127,6 @@ endfun
 " Use  ",-<space>" to toggle relative number, colorcolumn, listchars and search highlight
 nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>:set nolist!<cr>
 
-"---- ---- ---- ---- Better Backup, Swap and Undos Storage ---- ---- ---- ----"
-set directory=~/.vim/dirs/tmp               " directory to place swap files in
-set backup                                  " make backup files
-set backupdir=~/.vim/dirs/backups           " where to put backup files
-set undofile                                " persistent undos
-set undodir=~/.vim/dirs/undos               " undo after you re-open the file
-set viminfo+=n~/.vim/dirs/viminfo
-let g:yankring_history_dir = '~/.vim/dirs/' " store yankring history file
-
-" Create Needed Directories if They Don't Exist
-if !isdirectory(&backupdir)
-  call mkdir(&backupdir, "p")
-endif
-if !isdirectory(&directory)
-  call mkdir(&directory, "p")
-endif
-if !isdirectory(&undodir)
-  call mkdir(&undodir, "p")
-endif
-
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
 "" On Terminal 
 colorscheme PaperColor     " I love it that colorscheme
@@ -147,20 +140,6 @@ set fillchars+=vert:\      " remove ugly vertical lines on window division
 " hi Comment cterm=italic
 if !has("gui_running")
   hi vertsplit ctermfg=bg ctermbg=bg
-endif
-
-"" GVim
-set guioptions-=m " Disable menu bar
-set guioptions-=T " Disable toolbar
-set guioptions-=l " Disable left-hand scrollbar
-set guioptions-=L " Disable left-hand scrollbar vertically
-set guioptions-=r " Disable right-hand scrollbar
-set guioptions-=R " Disable right-hand scrollbar vertically
-set guioptions-=e " Disable gui tabs
-hi vertsplit guifg=bg guibg=bg
-if has("autocmd") && has("gui")
-    au GUIEnter * set vb t_vb=
-    set guifont=Monospace\ Regular\ 12
 endif
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
@@ -219,11 +198,6 @@ map <silent> <F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
-"" vim-go
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
-
 "" lightline
 let g:lightline = {
       \ 'colorscheme': 'default',
@@ -235,6 +209,7 @@ let g:lightline = {
       \   'cocstatus': 'coc#status',
       \   'gitbranch': 'FugitiveHead'
       \ },
+      \ 'enable': { 'tabline': 0 },
       \ }
 
 
