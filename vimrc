@@ -43,6 +43,7 @@ Plug 'honza/vim-snippets'            " Vim-snipmate default snippets
 " Color Schemes
 Plug 'NLKNguyen/papercolor-theme'    " Light & Dark Vim color schemes inspired by Google's Material Design
 Plug 'morhetz/gruvbox'               " Gruvbox colorscheme
+Plug 'sickill/vim-monokai'           " Monokai color scheme for Vim converted from Textmate theme
 call plug#end()                      " Vim-plug finished declaring
 "---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- -----"
 
