@@ -1,7 +1,7 @@
 # Basic Vim configuration for Linux Servers Admins
 
 ## Instalation
-    git clone https://github.com/lazarocastro/basic-vimrc.git ~/.vim
+    git clone https://github.com/lazincastro/basic-vimrc.git ~/.vim
 
 ## Dependecies
 ### On Ubuntu
