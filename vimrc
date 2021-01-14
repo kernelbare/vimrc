@@ -107,24 +107,6 @@ if !isdirectory(&undodir)
 endif
 
 "---- ---- ---- ---- Tabs & Trailing Spaces ---- ---- ---- ----"
-" Toggle listchars
-fun! ToggleLC()
-    if &listchars == ''
-        set listchars=''
-    else
-        set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-    endif
-endfun
-
-" Toggle colorcolumn
-fun! ToggleCC()
-    if &cc == ''
-        set cc=80
-    else
-        set cc=
-    endif
-endfun
-
 " Use  ",-<space>" to toggle relative number, colorcolumn, listchars and search highlight
 nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>:set nolist!<cr>
 
@@ -144,6 +126,12 @@ if !has("gui_running")
 endif
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
+" Escape to the NORMAL mode
+inoremap jj <esc>
+
+"" Remap VIM 0 to first non-blank character
+map 0 ^
+
 "" Make it easy to edit the Vimrc file."
 nmap <Leader>ev :tabedit ~/.vim/vimrc<cr>
 
@@ -153,11 +141,12 @@ nmap <silent><Leader>en :vsplit ~/.vim/NOTES.md<cr>:vertical resize 50<cr>:let &
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
-" Escape to the NORMAL mode
-inoremap jj <esc>
-
 "" terminal emulation
 nnoremap <silent> <leader>sh :below terminal<CR>
+
+"" Visual mode pressing * or # searches for the current selection
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 "" Move visual block
 vnoremap J :m '>+1<CR>gv=gv
@@ -277,6 +266,10 @@ nmap ,wr :execute ":Ack! " . expand('<cword>')<CR>
 let g:ackhighlight = 1
 
 "---- ---- ---- ---- Auto-Commands ---- ---- ---- ----"
+" Delete trailing white space on save, useful for some filetypes ;)
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+endif
 " clear empty spaces at the end of lines on save of python files
 autocmd BufWritePre *.py :%s/\s\+$//e
 
@@ -291,3 +284,50 @@ augroup vimrc-remember-cursor-position
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
+
+
+"---- ---- ---- ---- Functions ---- ---- ---- ----"
+" Super useful VisualSelection From an idea by Michael Naumann
+fun! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'gv'
+        call CmdLine("Ack '" . l:pattern . "' " )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfun
+
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+" Toggle listchars
+fun! ToggleLC()
+    if &listchars == ''
+        set listchars=''
+    else
+        set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+    endif
+endfun
+
+" Toggle colorcolumn
+fun! ToggleCC()
+    if &cc == ''
+        set cc=80
+    else
+        set cc=
+    endif
+endfun
+
