@@ -199,6 +199,9 @@ map <silent> <F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
+""vim-snipmate
+let g:snipMate = {} " If you already have this line you don't need it again
+let g:snipMate.snippet_version = 1
 "" lightline
 let g:lightline = {
       \ 'colorscheme': 'default',
