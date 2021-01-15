@@ -34,6 +34,7 @@ Plug 'tpope/vim-commentary'          " Use 'gcc' to comment out a line
 Plug 'tpope/vim-vinegar'             " Simple file browser
 Plug 'tpope/vim-surround'            " Quoting/parenthesizing made simple
 Plug 'tpope/vim-fugitive'            " A Git wrapper so awesome, it should be illegal
+
 " Snippets
 Plug 'MarcWeber/vim-addon-mw-utils'  " interpret a file by function and cache file automatically
 Plug 'tomtom/tlib_vim'               " Some utility functions for VIM
