@@ -23,6 +23,10 @@ You can download my Terminator settings
 
 Will work propety with [IBM Plex Font](https://github.com/IBM/plex). I Like it the [IBM Plex Mono](https://github.com/IBM/plex/tree/master/IBM-Plex-Mono/fonts/complete/ttf).
 
+There are other two fonts that I like it, [Hack](https://sourcefoundry.org/hack/) and [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
+
+Try it!
+
 Do you like a fancy shell? Install [startship](https://starship.rs/):
     
     curl -fsSL https://starship.rs/install.sh | bash
