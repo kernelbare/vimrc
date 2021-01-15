@@ -21,9 +21,9 @@ You can download my Terminator settings
 
     curl https://raw.githubusercontent.com/lazincastro/good-vimrc/master/config/terminator/config -o ~/.config/terminator/config
 
-Will work propety with [IBM Plex Font](https://github.com/IBM/plex). I Like it the [IBM Plex Mono](https://github.com/IBM/plex/tree/master/IBM-Plex-Mono/fonts/complete/ttf).
+Will work propety with [IBM Plex Font](https://github.com/IBM/plex). I Like to use the [IBM Plex Mono](https://github.com/IBM/plex/tree/master/IBM-Plex-Mono/fonts/complete/ttf).
 
-There are other two fonts that I like it, [Hack](https://sourcefoundry.org/hack/) and [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
+There are other two fonts that I like, [Hack](https://sourcefoundry.org/hack/) and [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
 
 Try it!
 
