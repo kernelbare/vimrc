@@ -21,6 +21,8 @@ You can download my Terminator settings
 
     curl https://raw.githubusercontent.com/lazincastro/good-vimrc/master/config/terminator/config -o ~/.config/terminator/config
 
+Will work propety with [IBM Plex Font](https://github.com/IBM/plex). I Like it the [IBM Plex Mono](https://github.com/IBM/plex/tree/master/IBM-Plex-Mono/fonts/complete/ttf).
+
 Do you like a fancy shell? Install [startship](https://starship.rs/):
     
     curl -fsSL https://starship.rs/install.sh | bash
