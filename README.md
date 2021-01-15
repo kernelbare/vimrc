@@ -1,4 +1,4 @@
-# Basic Vim configuration for Linux Servers Admins
+# Good Vim configuration for Linux Servers Admins
 
 ## Installation
     git clone https://github.com/lazincastro/basic-vimrc.git ~/.vim
