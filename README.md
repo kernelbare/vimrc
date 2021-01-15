@@ -23,7 +23,7 @@ You can download my Terminator settings
 
 Will work property with [IBM Plex Font](https://github.com/IBM/plex). I Like to use the [IBM Plex Mono](https://github.com/IBM/plex/tree/master/IBM-Plex-Mono/fonts/complete/ttf).
 
-There are other two fonts that I like, [Hack](https://sourcefoundry.org/hack/) and [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
+There are another two fonts that I like, [Hack](https://sourcefoundry.org/hack/) and [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
 
 Try it!
 
