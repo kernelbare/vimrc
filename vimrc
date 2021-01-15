@@ -270,8 +270,6 @@ let g:ackhighlight = 1
 if has("autocmd")
     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
-" clear empty spaces at the end of lines on save of python files
-autocmd BufWritePre *.py :%s/\s\+$//e
 
 " Automatically source the Vimrc file on save
 augroup autosourcing
@@ -285,6 +283,13 @@ augroup vimrc-remember-cursor-position
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
+" Press 'q' to exit a help or markdown file.
+augroup notes 
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+  autocmd FileType markdown nnoremap <buffer> q :q<cr>
+  autocmd FileType help nnoremap <buffer> q :q<cr>
+augroup END
 
 "---- ---- ---- ---- Functions ---- ---- ---- ----"
 " Super useful VisualSelection From an idea by Michael Naumann
