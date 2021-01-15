@@ -7,4 +7,6 @@
 ### On Ubuntu
     sudo apt install git curl silversearcher-ag exuberant-ctags agrep unzip jq ack-grep 
 ### On CentOS
-    sudo yum install epel-release ctags the_silver_searcher agrep ack
+    sudo yum -y install epel-release ctags the_silver_searcher agrep ack
+### On Fedora Server
+    sudo dnf -y install ctags the_silver_searcher agrep ack
