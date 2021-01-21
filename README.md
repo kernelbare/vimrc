@@ -1,7 +1,5 @@
 # A Good Vim configuration for Linux Servers Admins
 
-[TOC]
-
 ## Installation
 
 ```bash
