@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-git clone https://github.com/lazincastro/basic-vimrc.git ~/.vim
+git clone https://github.com/lazcastro/basic-vimrc.git ~/.vim
 ```
 
 ## Dependecies
@@ -30,7 +30,7 @@ sudo apt install terminator
 You can download my Terminator settings
 
 ```shell
-curl https://raw.githubusercontent.com/lazincastro/good-vimrc/master/config/terminator/config -o ~/.config/terminator/config
+curl https://raw.githubusercontent.com/lazcastro/good-vimrc/master/config/terminator/config -o ~/.config/terminator/config
 ```
 
 Will work property with [IBM Plex Font](https://github.com/IBM/plex). I Like to use the [IBM Plex Mono](https://github.com/IBM/plex/tree/master/IBM-Plex-Mono/fonts/complete/ttf).
