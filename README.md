@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-git clone https://github.com/lazcastro/basic-vimrc.git ~/.vim
+git clone https://github.com/kernelbare/basic-vimrc.git ~/.vim
 ```
 
 ## Dependecies
