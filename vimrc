@@ -109,18 +109,18 @@ endif
 
 "---- ---- ---- ---- Tabs & Trailing Spaces ---- ---- ---- ----"
 " Use  ",-<space>" to toggle relative number, colorcolumn, listchars and search highlight
-nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu! rnu!<cr>:set nolist!<cr>
+nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu!<cr>:set nolist!<cr>
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
 "" On Terminal 
-colorscheme PaperColor     " I love it that colorscheme
+colorscheme gruvbox        " I love it that colorscheme
 set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
 set cursorcolumn           " Cursor Column
-" set foldcolumn=1           " Width between text and border
 set fillchars+=vert:\      " remove ugly vertical lines on window division
-"set colorcolumn=80         " Screen columns that are highlight
+" set foldcolumn=1           " Width between text and border
+" set colorcolumn=80         " Screen columns that are highlight
 " hi Comment cterm=italic
 if !has("gui_running")
   hi vertsplit ctermfg=bg ctermbg=bg
@@ -129,9 +129,6 @@ endif
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
 " Escape to the NORMAL mode
 inoremap jj <esc>
-
-"" Remap VIM 0 to first non-blank character
-map 0 ^
 
 "" Make it easy to edit the Vimrc file."
 nmap <Leader>ev :tabedit ~/.vim/vimrc<cr>
@@ -194,7 +191,7 @@ let g:snipMate = {} " If you already have this line you don't need it again
 let g:snipMate.snippet_version = 1
 "" lightline
 let g:lightline = {
-      \ 'colorscheme': 'default',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
