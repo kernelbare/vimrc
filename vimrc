@@ -22,12 +22,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'              " Fuzzy finder
 Plug 'mileszs/ack.vim'               " Ack code search (requires ack installed in the system)
 Plug 'vim-scripts/grep.vim'          " Integrates the [a, e and f]grep
-Plug 'itchyny/lightline.vim'         " A light statusline/tabline plugin
 Plug 'airblade/vim-gitgutter'        " Git diff gutter and stages/undoesks
 Plug 'machakann/vim-highlightedyank' " Make the yanked region apparent!
 Plug 'vim-scripts/AutoComplPop'      " Automatically opens popup menu for completions
 Plug 'jiangmiao/auto-pairs'          " Vim plugin, insert or delete brackets, parens, quotes in pair 
 Plug 'ap/vim-css-color'              " Preview colours in source code while editing
+Plug 'pbrisbin/vim-mkdir'            " Automatically create any non-existent directories before writing the buffer
 
 " Tim Pope Section
 Plug 'tpope/vim-commentary'          " Use 'gcc' to comment out a line
@@ -44,9 +44,11 @@ Plug 'honza/vim-snippets'            " Vim-snipmate default snippets
 " Color Schemes
 Plug 'NLKNguyen/papercolor-theme'    " Light & Dark Vim color schemes inspired by Google's Material Design
 Plug 'morhetz/gruvbox'               " Gruvbox colorscheme
-Plug 'sickill/vim-monokai'           " Monokai color scheme for Vim converted from Textmate theme
+
+" Langs and Code Helpers
+Plug 'preservim/tagbar'              " Vim plugin that displays tags in a window, ordered by scope
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go development plugin for Vim
 call plug#end()                      " Vim-plug finished declaring
-"---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- -----"
 
 "---- ---- ---- --- Install Plugins At The First Time Vim Runs --- ---- ---- ----"
 if vim_plug_just_installed
@@ -70,10 +72,8 @@ set laststatus=2                  " Always Show Status Bar
 set noerrorbells visualbell t_vb= " No damn bells
 set clipboard=unnamed,unnamedplus " Copy into system (*, +) register
 set tags=tags;                    " Look for a tags file in directories
-set noshowmode                    " INSERT is unnecessary (see lightline.vim docs)
 set confirm                       " use a dialog when an operation has to be confirmed
 set title                         " the title of the window
-"set nu rnu                        " Activate line number and relative number
 
 "---- ---- ---- ---- Searching ---- ---- ---- ----"
 set incsearch  " incremental search
@@ -108,7 +108,7 @@ if !isdirectory(&undodir)
 endif
 
 "---- ---- ---- ---- Tabs & Trailing Spaces ---- ---- ---- ----"
-" Use  ",-<space>" to toggle relative number, colorcolumn, listchars and search highlight
+" Use  ",<space>" to toggle number, colorcolumn, listchars and search highlight
 nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu!<cr>:set nolist!<cr>
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
@@ -122,9 +122,9 @@ set fillchars+=vert:\      " remove ugly vertical lines on window division
 " set foldcolumn=1           " Width between text and border
 " set colorcolumn=80         " Screen columns that are highlight
 " hi Comment cterm=italic
-if !has("gui_running")
-  hi vertsplit ctermfg=bg ctermbg=bg
-endif
+" if !has("gui_running")
+"   hi vertsplit ctermfg=bg ctermbg=bg
+" endif
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
 " Escape to the NORMAL mode
@@ -150,8 +150,7 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-"" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
+"" Search will center on the line
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
@@ -186,22 +185,23 @@ map <silent> <F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
+""Vim-go
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gr <Plug>(go-run)
+" Go syntax highlighting
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+" au filetype go inoremap <buffer> . .<C-x><C-o>
+
+"" Tagbar
+nmap <F7> :TagbarToggle<CR>
+
 ""vim-snipmate
 let g:snipMate = {} " If you already have this line you don't need it again
 let g:snipMate.snippet_version = 1
-"" lightline
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ 'enable': { 'tabline': 0 },
-      \ }
 
 
 "" vim-gitgutter
@@ -218,9 +218,9 @@ set completeopt=menuone,longest
 set shortmess+=c
 
 "" Vinegar
-" Initialize with dot files hidden. Press 'gh' to toggle dot file hiding.
+" Initialize with dot files hidden. Press 'gh' to toggle dot file hiding
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-" Closes it vinegar buffer after opening the file
+" Close Vinegar buffer after opening the file
 let g:netrw_fastbrowse = 0
 " Specify user's preference for a viewer
 let g:netrw_browsex_viewer="setsid xdg-open"
@@ -281,7 +281,7 @@ augroup vimrc-remember-cursor-position
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
-" Press 'q' to exit a help or markdown file.
+" Press 'q' to exit of a help or markdown file.
 augroup notes 
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
@@ -294,16 +294,13 @@ augroup END
 fun! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
     execute "normal! vgvy"
-
     let l:pattern = escape(@", "\\/.*'$^~[]")
     let l:pattern = substitute(l:pattern, "\n$", "", "")
-
     if a:direction == 'gv'
         call CmdLine("Ack '" . l:pattern . "' " )
     elseif a:direction == 'replace'
         call CmdLine("%s" . '/'. l:pattern . '/')
     endif
-
     let @/ = l:pattern
     let @" = l:saved_reg
 endfun
