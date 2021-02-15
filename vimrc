@@ -47,7 +47,7 @@ Plug 'morhetz/gruvbox'               " Gruvbox colorscheme
 
 " Langs and Code Helpers
 Plug 'preservim/tagbar'              " Vim plugin that displays tags in a window, ordered by scope
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go development plugin for Vim
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go development plugin for Vim
 call plug#end()                      " Vim-plug finished declaring
 
 "---- ---- ---- --- Install Plugins At The First Time Vim Runs --- ---- ---- ----"
@@ -85,7 +85,6 @@ set smartcase  " ...unless we type a capital
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
-" set mouse=a        " Uncomment if you like to use mouse to select
 
 "---- ---- ---- ---- Better Backup, Swap and Undos Storage ---- ---- ---- ----"
 set directory=~/.vim/dirs/tmp               " directory to place swap files in
@@ -112,19 +111,13 @@ endif
 nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu!<cr>:set nolist!<cr>
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
-"" On Terminal 
+"" On Terminal
 colorscheme gruvbox        " I love it that colorscheme
 set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
 set cursorcolumn           " Cursor Column
 set fillchars+=vert:\      " remove ugly vertical lines on window division
-" set foldcolumn=1           " Width between text and border
-" set colorcolumn=80         " Screen columns that are highlight
-" hi Comment cterm=italic
-" if !has("gui_running")
-"   hi vertsplit ctermfg=bg ctermbg=bg
-" endif
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
 " Escape to the NORMAL mode
@@ -251,7 +244,6 @@ endif
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-" nnoremap <silent> <leader>e :FZF -m<CR>
 nnoremap <silent> <C-p> :FZF -m<CR>
 
 " Recovery commands from history through FZF
@@ -330,4 +322,3 @@ fun! ToggleCC()
         set cc=
     endif
 endfun
-
