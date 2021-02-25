@@ -44,10 +44,11 @@ Plug 'honza/vim-snippets'            " Vim-snipmate default snippets
 " Color Schemes
 Plug 'NLKNguyen/papercolor-theme'    " Light & Dark Vim color schemes inspired by Google's Material Design
 Plug 'morhetz/gruvbox'               " Gruvbox colorscheme
+Plug 'sickill/vim-monokai'           " Monokai color scheme for Vim converted from TextMate theme
 
 " Langs and Code Helpers
 Plug 'preservim/tagbar'              " Vim plugin that displays tags in a window, ordered by scope
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go development plugin for Vim
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go development plugin for Vim
 call plug#end()                      " Vim-plug finished declaring
 
 "---- ---- ---- --- Install Plugins At The First Time Vim Runs --- ---- ---- ----"
@@ -64,6 +65,7 @@ set backspace=indent,eol,start    " Make backspace behave like every other edito
 set nocompatible                  " no vi-compatible
 let mapleader = ','               " The default leader is \
 set nowrap                        " Disable long line wrap
+set autoindent                    " Copy indent from current line when starting a new line
 set expandtab                     " Tabs and Spaces Handling
 set tabstop=2                     " Number of space that <TAB>
 set softtabstop=2                 " Number of space that <TAB>
@@ -107,7 +109,7 @@ if !isdirectory(&undodir)
 endif
 
 "---- ---- ---- ---- Tabs & Trailing Spaces ---- ---- ---- ----"
-" Use  ",<space>" to toggle number, colorcolumn, listchars and search highlight
+" Use ",<space>" to toggle number, colorcolumn, listchars and search highlight
 nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<cr>:set nu!<cr>:set nolist!<cr>
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
@@ -118,6 +120,7 @@ set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
 set cursorcolumn           " Cursor Column
 set fillchars+=vert:\      " remove ugly vertical lines on window division
+set termwinsize=10x0
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
 " Escape to the NORMAL mode
