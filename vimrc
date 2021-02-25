@@ -48,7 +48,7 @@ Plug 'sickill/vim-monokai'           " Monokai color scheme for Vim converted fr
 
 " Langs and Code Helpers
 Plug 'preservim/tagbar'              " Vim plugin that displays tags in a window, ordered by scope
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go development plugin for Vim
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go development plugin for Vim
 call plug#end()                      " Vim-plug finished declaring
 
 "---- ---- ---- --- Install Plugins At The First Time Vim Runs --- ---- ---- ----"
@@ -134,6 +134,9 @@ nmap <silent><Leader>en :vsplit ~/.vim/NOTES.md<cr>:vertical resize 50<cr>:let &
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
+
+"" Go to the first non-blank character of the line
+nnoremap 0 ^
 
 "" terminal emulation
 nnoremap <silent> <leader>sh :below terminal<CR>
