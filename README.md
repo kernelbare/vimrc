@@ -7,7 +7,27 @@ git clone https://github.com/kernelbare/basic-vimrc.git ~/.vim
 ```
 
 ## Dependecies
+### Install Nodejs
+
+```bash
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install gcc g++ make
+sudo apt-get install -y nodejs
+node --version
+```
+
+### Install Yarn (optional)
+
+```bash
+## Install Yarn
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+yarn --version
+```
+
 ### On Ubuntu
+
 ```shell
 sudo apt install git curl silversearcher-ag exuberant-ctags agrep unzip jq ack-grep 
 ```
@@ -33,14 +53,7 @@ You can download my Terminator settings
 curl https://raw.githubusercontent.com/lazcastro/good-vimrc/master/config/terminator/config -o ~/.config/terminator/config
 ```
 
-Will work property with [IBM Plex Font](https://github.com/IBM/plex). I Like to use the [IBM Plex Mono](https://github.com/IBM/plex/tree/master/IBM-Plex-Mono/fonts/complete/ttf).
-
-There are another two fonts that I like, [Hack](https://sourcefoundry.org/hack/) and [Source Code Pro](https://adobe-fonts.github.io/source-code-pro/)
-
-Try it!
-
-Do you like a fancy shell? Installing [startship](https://starship.rs/) you will have a good one.
-    
+Do you like a fancy shell? Installing [startship](https://starship.rs/) you will have a good one.   
 ```shell
 curl -fsSL https://starship.rs/install.sh | bash
 echo 'eval "$(starship init bash)"' >> ~/.bashrc
