@@ -1,10 +1,10 @@
 # A Good Vim configuration for Vim/NeoVim
 
-![](/home/lcastro/.vim/img/2021-03-14_01-20.png)
+![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-20.png)
 
-![](/home/lcastro/.vim/img/2021-03-14_01-24.png)
+![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-24.png)
 
-![](/home/lcastro/.vim/img/2021-03-14_01-23.png)
+![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-23.png)
 
 ## Installation
 
