@@ -155,7 +155,7 @@ else
 endif
 
 "" Set working directory
-nnoremap <silent><leader>. :lcd %:p:h<CR>
+nnoremap <silent><leader>. :lcd %:p:h<CR>:echo "Change Directory!"<cr>
 
 "" Go to the first non-blank character of the line
 nnoremap 0 ^
@@ -215,18 +215,18 @@ ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
 "" Lightline
-let g:lightline = {'colorscheme': 'dracula'}
-
-"" Vim-go
-au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gr <Plug>(go-run)
-" Go syntax highlighting
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-" au filetype go inoremap <buffer> . .<C-x><C-o>
+let g:lightline = {
+    \ 'colorscheme': 'dracula',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'cocstatus': 'coc#status'
+    \ },
+    \ }
+" Use autocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 "" Tagbar
 nmap <F7> :TagbarToggle<CR>
@@ -293,8 +293,8 @@ augroup END
 augroup notes 
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-  autocmd FileType markdown nnoremap <buffer> q :q<cr>
-  autocmd FileType help nnoremap <buffer> q :q<cr>
+  autocmd FileType markdown nnoremap <silent><buffer> q :q<cr>
+  autocmd FileType help nnoremap <silent><buffer> q :q<cr>
 augroup END
 
 "---- ---- ---- ---- Functions ---- ---- ---- ----"
@@ -320,6 +320,7 @@ fun! Options()
         \ nolist!
         \ cursorline!
         \ cursorcolumn!
+        \ signcolumn=auto
 endfun
 fun! ToggleCC()
     if &cc == ''
