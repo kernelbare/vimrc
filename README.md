@@ -1,12 +1,27 @@
-# A Good Vim configuration for Linux Servers Admins
+# A Good Vim configuration for Vim/NeoVim
+
+![](/home/lcastro/.vim/img/2021-03-14_01-20.png)
+
+![](/home/lcastro/.vim/img/2021-03-14_01-24.png)
+
+![](/home/lcastro/.vim/img/2021-03-14_01-23.png)
 
 ## Installation
+
+For Vim
 
 ```bash
 git clone https://github.com/kernelbare/basic-vimrc.git ~/.vim
 ```
 
+For NeoVim
+
+```bash
+git clone https://github.com/kernelbare/basic-vimrc.git ~/.config/nvim
+```
+
 ## Dependecies
+
 ### Install Nodejs
 
 ```bash
@@ -26,19 +41,24 @@ sudo apt-get update && sudo apt-get install yarn
 yarn --version
 ```
 
-### On Ubuntu
+### Ubuntu and Python packages
 
 ```shell
-sudo apt install git curl silversearcher-ag exuberant-ctags agrep unzip jq ack-grep 
+sudo apt install git curl python3-pip silversearcher-ag exuberant-ctags jq ack-grep 
+sudo pip3 install pynvim flake8 pylint isort jedi
 ```
-### On CentOS
+### On CentOS\*
 ```bash
 sudo yum -y install epel-release ctags the_silver_searcher agrep ack
 ```
-### On Fedora Server
+### On Fedora Server\*
 ```bash
 sudo dnf -y install ctags the_silver_searcher agrep ack
 ```
+
+> \* I'm not made a good teste in these distros. 
+
+---
 
 ## Recommendations and Fancy Settings
 
