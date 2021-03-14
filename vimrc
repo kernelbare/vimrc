@@ -155,7 +155,7 @@ else
 endif
 
 "" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
+nnoremap <silent><leader>. :lcd %:p:h<CR>
 
 "" Go to the first non-blank character of the line
 nnoremap 0 ^
