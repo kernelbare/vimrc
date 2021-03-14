@@ -2,10 +2,6 @@
 
 ![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-20.png)
 
-![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-24.png)
-
-![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-23.png)
-
 ## Installation
 
 For Vim
@@ -79,4 +75,8 @@ curl -fsSL https://starship.rs/install.sh | bash
 echo 'eval "$(starship init bash)"' >> ~/.bashrc
 ```
 
+# ScreenShot
 
+![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-24.png)
+
+![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-23.png)
