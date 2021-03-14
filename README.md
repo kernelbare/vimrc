@@ -75,7 +75,7 @@ curl -fsSL https://starship.rs/install.sh | bash
 echo 'eval "$(starship init bash)"' >> ~/.bashrc
 ```
 
-# ScreenShot
+# ScreenShots
 
 ![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-24.png)
 
