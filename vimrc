@@ -57,8 +57,9 @@ Plug 'dracula/vim', { 'as': 'dracula' } " Dark theme
 Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
 
 " Langs and Code Helpers
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/tagbar'              " Vim plugin that displays tags in a window, ordered by scope
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Load extensions like VSCode
+Plug 'preservim/tagbar'                  " Vim plugin that displays tags in a window, ordered by scope
+Plug 'psf/black', { 'branch': 'stable' } " The uncompromising Python code formatter
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Go development plugin for Vim
 call plug#end()
 

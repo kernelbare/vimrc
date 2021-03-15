@@ -1,4 +1,5 @@
 autoload/
 dirs/  
 plugged/
+black/
 .netrwhist
