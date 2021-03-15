@@ -267,6 +267,10 @@ nmap ,wr :execute ":Ack! " . expand('<cword>')<CR>
 let g:ackhighlight = 1
 
 "---- ---- ---- ---- Auto-Commands ---- ---- ---- ----"
+" Execute Python programs
+autocmd FileType python map <buffer> <F5> :w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
+
 " Delete trailing white space on save, useful for some filetypes ;)
 autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :%s/\s\+$//e
 
@@ -333,7 +337,7 @@ fun! ToggleCC()
 endfun
 
 "---- ---- ---- ---- Custom configurations ---- ---- ---- ----"
-" Include user's custom nvim configurations
+" Include user's custom vim configurations
 if using_neovim
     let custom_configs_path = "~/.config/nvim/custom.vim"
 else
