@@ -22,6 +22,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'              " Fuzzy finder
 Plug 'mileszs/ack.vim'               " Ack code search (requires ack installed in the system)
 Plug 'vim-scripts/grep.vim'          " Integrates the [a, e and f]grep
+Plug 'itchyny/lightline.vim'         " A light and configurable statusline/tabline
 Plug 'airblade/vim-gitgutter'        " Git diff gutter and stages/undoesks
 Plug 'machakann/vim-highlightedyank' " Make the yanked region apparent!
 Plug 'vim-scripts/AutoComplPop'      " Automatically opens popup menu for completions
@@ -42,9 +43,8 @@ Plug 'garbas/vim-snipmate'           " TextMate's snippets features in Vim.
 Plug 'honza/vim-snippets'            " Vim-snipmate default snippets
 
 " Color Schemes
-Plug 'NLKNguyen/papercolor-theme'    " Light & Dark Vim color schemes inspired by Google's Material Design
-Plug 'morhetz/gruvbox'               " Gruvbox colorscheme
-Plug 'sickill/vim-monokai'           " Monokai color scheme for Vim converted from TextMate theme
+Plug 'dracula/vim', { 'as': 'dracula' } " Dark theme
+Plug 'morhetz/gruvbox'                  " Gruvbox colorscheme
 
 " Langs and Code Helpers
 Plug 'preservim/tagbar'              " Vim plugin that displays tags in a window, ordered by scope
@@ -114,13 +114,16 @@ nnoremap <silent> <leader><space> :noh<cr>:call ToggleLC()<cr>:call ToggleCC()<c
 
 "---- ---- ---- ---- Visual Settings ---- ---- ---- ----"
 "" On Terminal
-colorscheme gruvbox        " I love it that colorscheme
+colorscheme dracula        " I love it that colorscheme
 set bg=dark                " Background used for highlight color
 set t_Co=256               " Enable 256 colors in Vim
 set cursorline             " Cursor Line
 set cursorcolumn           " Cursor Column
 set fillchars+=vert:\      " remove ugly vertical lines on window division
 set termwinsize=10x0
+if has ("termguicolors")   " When on, uses highlight-guifg
+    set termguicolors      " > and highlight-guibg
+endif
 
 "---- ---- ---- ---- Mappings ---- ---- ---- ----"
 " Escape to the NORMAL mode
@@ -184,6 +187,8 @@ map <silent> <F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
+let g:lightline = {'colorscheme': 'dracula'}
+
 ""Vim-go
 au FileType go nmap <leader>gb <Plug>(go-build)
 au FileType go nmap <leader>gr <Plug>(go-run)
