@@ -66,7 +66,7 @@ sudo apt install terminator
 You can download my Terminator settings
 
 ```shell
-curl https://raw.githubusercontent.com/lazcastro/good-vimrc/master/config/terminator/config -o ~/.config/terminator/config
+curl https://raw.githubusercontent.com/kernelbare/vimrc/master/config/terminator/config -o ~/.config/terminator/config
 ```
 
 Do you like a fancy shell? Installing [startship](https://starship.rs/) you will have a good one.   
