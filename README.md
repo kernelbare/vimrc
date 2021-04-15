@@ -52,7 +52,7 @@ sudo yum -y install epel-release ctags the_silver_searcher agrep ack
 sudo dnf -y install ctags the_silver_searcher agrep ack
 ```
 
-> \* I'm not made a good teste in these distros. 
+> \* I'm not made a good tests on these distros. 
 
 ---
 
