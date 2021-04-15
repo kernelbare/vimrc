@@ -1,19 +1,19 @@
 # A Good Vim configuration for Vim/NeoVim
 
-![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-20.png)
+![](https://github.com/kernelbare/vimrc/blob/master/img/2021-03-14_01-20.png)
 
 ## Installation
 
 For Vim
 
 ```bash
-git clone https://github.com/kernelbare/basic-vimrc.git ~/.vim
+git clone https://github.com/kernelbare/vimrc.git ~/.vim
 ```
 
 For NeoVim
 
 ```bash
-git clone https://github.com/kernelbare/basic-vimrc.git ~/.config/nvim
+git clone https://github.com/kernelbare/vimrc.git ~/.config/nvim
 ```
 
 ## Dependecies
@@ -77,6 +77,6 @@ echo 'eval "$(starship init bash)"' >> ~/.bashrc
 
 # ScreenShots
 
-![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-24.png)
+![](https://github.com/kernelbare/vimrc/blob/master/img/2021-03-14_01-24.png)
 
-![](https://github.com/kernelbare/good-vimrc/blob/master/img/2021-03-14_01-23.png)
+![](https://github.com/kernelbare/vimrc/blob/master/img/2021-03-14_01-23.png)
