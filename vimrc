@@ -216,6 +216,11 @@ map <silent><F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
+"" vim-terraform
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
+
 "" Lightline
 let g:lightline = {
     \ 'colorscheme': 'dracula',
