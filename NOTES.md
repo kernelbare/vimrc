@@ -44,3 +44,7 @@
     k create deployment my-nginx --image=nginx --dry-run=client -o yaml > deployment-template.yaml
 ### Expose Pod
     k expose pod my-nginx
+
+### Terraform reference
+    https://github.com/juliosueiras/terraform-lsp
+
