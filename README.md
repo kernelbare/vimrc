@@ -18,6 +18,12 @@ git clone https://github.com/kernelbare/vimrc.git ~/.config/nvim
 
 ## Dependecies
 
+### Ubuntu Packages
+
+```shell
+sudo apt install git curl python3-pip python3-venv silversearcher-ag exuberant-ctags jq ack-grep 
+```
+
 ### Install Nodejs
 
 ```bash
@@ -37,43 +43,34 @@ sudo apt-get update && sudo apt-get install yarn
 yarn --version
 ```
 
-### Ubuntu and Python packages
+### Python Packages
 
 ```shell
-sudo apt install git curl python3-pip silversearcher-ag exuberant-ctags jq ack-grep 
-sudo pip3 install pynvim flake8 pylint isort jedi
-```
-### On CentOS\*
-```bash
-sudo yum -y install epel-release ctags the_silver_searcher agrep ack
-```
-### On Fedora Server\*
-```bash
-sudo dnf -y install ctags the_silver_searcher agrep ack
+sudo pip3 install pynvim flake8 pylint isort jedi jedi-language-server
 ```
 
-> \* I'm not made a good tests on these distros. 
+### Install Terraform Language Server
 
+```
+# Add the HashiCorp GPG key
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+# Add the official HashiCorp Linux repository
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install terraform-ls
+```
+
+### Install coc.nvim extensions
+
+```
+:CocInstall coc-json coc-yaml coc-jedi  
+```
 ---
 
-## Recommendations and Fancy Settings
+## TODO
 
-If you use Ubuntu 20.04 as your Desktop, for a good experience, I recommend installing Terminator.
-```shell
-sudo apt install terminator
-```
+- Create Windows Terminal settings
+- Create WLS2 settings
 
-You can download my Terminator settings
-
-```shell
-curl https://raw.githubusercontent.com/kernelbare/vimrc/master/config/terminator/config -o ~/.config/terminator/config
-```
-
-Do you like a fancy shell? Installing [startship](https://starship.rs/) you will have a good one.   
-```shell
-curl -fsSL https://starship.rs/install.sh | bash
-echo 'eval "$(starship init bash)"' >> ~/.bashrc
-```
 
 # ScreenShots
 

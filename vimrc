@@ -1,4 +1,4 @@
-set encoding=utf-8  " Sets the character encoding used inside Vim
+set encoding=UTF-8  " Sets the character encoding used inside Vim
 let using_neovim = has('nvim')
 let using_vim = !using_neovim
 
@@ -44,6 +44,8 @@ Plug 'machakann/vim-highlightedyank' " Make the yanked region apparent!
 Plug 'jiangmiao/auto-pairs'          " Vim plugin, insert or delete brackets, parens, quotes in pair 
 Plug 'ap/vim-css-color'              " Preview colours in source code while editing
 Plug 'pbrisbin/vim-mkdir'            " Automatically create any non-existent directories before writing the buffer
+Plug 'ryanoasis/vim-devicons'        " Adds file type icons to Vim
+Plug 'preservim/nerdtree'            " A tree explorer plugin for vim
 " Plug 'vim-scripts/AutoComplPop'      " Automatically opens popup menu for completions
 
 " Tim Pope Section
@@ -114,6 +116,7 @@ set tags=tags;                    " Look for a tags file in directories
 set confirm                       " Use a dialog when an operation has to be confirmed
 set title                         " The title of the window
 set noshowmode                    " Insert is unnecessary
+set mouse=a
 " set shell=/bin/bash 
 
 "---- ---- ---- ---- Searching ---- ---- ---- ----"
@@ -216,9 +219,14 @@ map <silent><F10> :tab sball<cr>
 ca w!! w !sudo tee "%"
 
 "---- ---- ---- ---- Plugins Settings ---- ---- ---- ----"
+" NERDTree
+nnoremap <F2> :NERDTreeToggle<CR>
+" Start NERDTree and leave the cursor in it.
+autocmd VimEnter * NERDTree
+
 "" vim-terraform
 let g:terraform_align=1
-let g:terraform_fold_sections=1
+" let g:terraform_fold_sections=1
 let g:terraform_fmt_on_save=1
 
 "" Lightline
