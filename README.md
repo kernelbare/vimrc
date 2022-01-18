@@ -7,13 +7,13 @@
 For Vim
 
 ```bash
-git clone https://github.com/kernelbare/vimrc.git ~/.vim
+git clone https://github.com/lazincastro/vimrc.git ~/.vim
 ```
 
 For NeoVim
 
 ```bash
-git clone https://github.com/kernelbare/vimrc.git ~/.config/nvim
+git clone https://github.com/lazincastro/vimrc.git ~/.config/nvim
 ```
 
 ## Dependecies
@@ -74,6 +74,6 @@ sudo apt-get update && sudo apt-get install terraform-ls
 
 # ScreenShots
 
-![](https://github.com/kernelbare/vimrc/blob/master/img/2021-03-14_01-24.png)
+![](https://github.com/lazincastro/vimrc/blob/master/img/2021-03-14_01-24.png)
 
-![](https://github.com/kernelbare/vimrc/blob/master/img/2021-03-14_01-23.png)
+![](https://github.com/lazincastro/vimrc/blob/master/img/2021-03-14_01-23.png)
