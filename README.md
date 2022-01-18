@@ -1,6 +1,6 @@
 # A Good Vim configuration for Vim/NeoVim
 
-![](https://github.com/kernelbare/vimrc/blob/master/img/2021-03-14_01-20.png)
+![](https://github.com/lazincastro/vimrc/blob/master/img/2021-03-14_01-20.png)
 
 ## Installation
 
